@@ -1,0 +1,41 @@
+{
+    "apiVersion": "kubeflow.org/v1alpha1",
+    "kind": "TFJob",
+    "metadata": {
+        "name": "mnist-train",
+        "namespace": "kubeflow-seldon"
+    },
+    "spec": {
+        "replicaSpecs": [
+            {
+                "replicas": 1,
+                "template": {
+                    "spec": {
+                        "containers": [
+                            {
+                                "image": "seldonio/deepmnistclassifier_trainer:0.1",
+                                "name": "tensorflow",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/data",
+                                        "name": "persistent-storage"
+                                    }
+                                ]
+                            }
+                        ],
+                        "restartPolicy": "OnFailure",
+                        "volumes": [
+                            {
+                                "name": "persistent-storage",
+                                "persistentVolumeClaim": {
+                                    "claimName": "ml-data"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "tfReplicaType": "MASTER"
+            }
+        ]
+    }
+}
