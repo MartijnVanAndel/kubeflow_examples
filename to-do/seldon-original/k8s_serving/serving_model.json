@@ -1,0 +1,64 @@
+{
+    "apiVersion": "machinelearning.seldon.io/v1alpha2",
+    "kind": "SeldonDeployment",
+    "metadata": {
+        "labels": {
+            "app": "seldon"
+        },
+        "name": "mnist-classifier"
+    },
+    "spec": {
+        "annotations": {
+            "deployment_version": "v1",
+            "project_name": "MNIST Example",
+	    "seldon.io/engine-separate-pod": "false",
+	    "seldon.io/rest-connection-timeout": "100"
+        },
+        "name": "mnist-classifier",
+        "predictors": [
+            {
+                "annotations": {
+                    "predictor_version": "v1"
+                },
+                "componentSpecs": [{
+                    "spec": {
+                        "containers": [
+                            {
+                                "image": "seldonio/deepmnistclassifier_runtime:0.2",
+                                "imagePullPolicy": "Always",
+                                "name": "tf-model",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/data",
+                                        "name": "persistent-storage"
+                                    }
+                                ]
+                            }
+                        ],
+                        "terminationGracePeriodSeconds": 1,
+                        "volumes": [
+                            {
+                                "name": "persistent-storage",
+				"volumeSource" : {
+                                    "persistentVolumeClaim": {
+					"claimName": "nfs-1"
+                                    }
+				}
+                            }
+                        ]
+                     }
+                }],
+                "graph": {
+                    "children": [],
+                    "endpoint": {
+                        "type": "REST"
+                    },
+                    "name": "tf-model",
+                    "type": "MODEL"
+                },
+                "name": "mnist-classifier",
+                "replicas": 1
+            }
+        ]
+    }
+}
