@@ -25,6 +25,7 @@ Check on:
 1. [Pipeline introduction](./03-pipelines/Pipeline_Intro.ipynb)
 2. [Create a lightweight Python pipeline](./03-pipelines/Pipeline_Simple.ipynb)
 3. [Data passing in python components](./03-pipelines/Data_passing_in_python_components.ipynb)
+4. [Simple notebook pipeline using base image](./03-pipelines/simple-notebook-pipeline_[TF2]/Simple_Notebook_Pipeline.ipynb)
 
 ### B. Mixed language examples
 1. No examples yet
