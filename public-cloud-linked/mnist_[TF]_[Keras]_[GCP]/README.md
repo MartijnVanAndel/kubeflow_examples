@@ -16,7 +16,7 @@ for steps such as data preprocessing, data transformation, and model training.
 ## Content Overview:
 In this tutorial, we designed a series of notebooks to demonstrate how to interact with `Kubeflow Pipelines` through the
 [Kubeflow Pipelines SDK](https://github.com/kubeflow/pipelines/tree/master/sdk/python/kfp). In particular
-- [00 Kubeflow Cluster Setup](00_Kubeflow_Cluster_Setup.ipynb): this notebook helps you deploy a Kubeflow 
+- [00 Kubeflow Cluster Setup](00_Kubeflow_Cluster_Setup_[GCP].ipynb): this notebook helps you deploy a Kubeflow 
 cluster through CLI. Note that it is also possible to deploy the Kubeflow cluster though 
 [UI](https://www.kubeflow.org/docs/gke/deploy/deploy-ui/)
 
